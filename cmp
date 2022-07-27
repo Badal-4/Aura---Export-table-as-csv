@@ -1,0 +1,62 @@
+<aura:component controller="ExportDataInCSVHandler" implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>  
+    <aura:attribute name="acclist" type="Account[]"/>
+    <aura:attribute name="exportWithId" type="boolean" default="false"/>
+    <div style="width:100%;padding: 15px">
+        <div style="float:left">
+            <lightning:input type="toggle" aura:id="tglbtn" label="Export With Id" onchange="{!c.btnToggleButton}" messageToggleActive="" messageToggleInactive="" />
+        </div>
+        <div style="float:right">
+            <lightning:button iconName="utility:download" iconPosition="left" label="Download Account" onclick="{!c.downloadSelectedCase}" class="slds-button slds-button_brand"/>        
+        </div>
+    </div>
+    <br/><br/>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+            <tr>
+                <th scope="col">
+                    <div class="slds-truncate" title="">Sr. No.</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Account Name">Account Name</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Type">Type</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Rating">Rating</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Phone">Phone</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Website">Website</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.acclist}" var="a" indexVar="icount">
+                <tr>  
+                    <td scope="row">
+                        {!icount+1}
+                    </td>
+                    <td scope="row">
+                        {!a.Name}
+                    </td>
+                    <td scope="row">
+                        {!a.Type}
+                    </td>
+                    <td scope="row">
+                        {!a.Rating}
+                    </td>
+                    <td scope="row">
+                        {!a.Phone}
+                    </td>
+                    <td scope="row">
+                        {!a.Website}
+                    </td>
+                </tr>
+            </aura:iteration> 
+        </tbody>
+    </table>    
+ </aura:component>
